@@ -37,3 +37,7 @@ serde = { version = "1.0", default-features = false, features = ["derive", "rc"]
 futures = "0.3"
 futures-util = "0.3"
 tokio = { version = "0.2", default-features = false, features = ["rt-core", "rt-threaded", "io-driver", "net", "tcp", "time", "macros", "sync", "signal", "fs"] }
+
+[dev-dependencies]
+assert_cmd = "0.10"
+predicates = "1"
