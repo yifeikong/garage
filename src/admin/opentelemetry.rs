@@ -16,6 +16,7 @@ use prometheus::{Encoder, TextEncoder};
 use std::convert::Infallible;
 use std::sync::Arc;
 use std::time::SystemTime;
+use log::*;
 
 use futures::future::*;
 use garage_model::garage::Garage;
@@ -108,13 +109,12 @@ pub async fn run_admin_server(
         async move { Ok::<_, Infallible>(service_fn(move |req| serve_req(req, state.clone()))) }
     });
 
-    let addr = ([127, 0, 0, 1], 3000).into();
+    let addr = &garage.config.admin_api.bind_addr;
 
     let server = Server::bind(&addr).serve(make_svc);
+    let graceful = server.with_graceful_shutdown(shutdown_signal);
+    info!("Admin server listening on http://{}", addr);
 
-    println!("Listening on http://{}", addr);
-
-    server.await?;
-
+    graceful.await?;
     Ok(())
 }

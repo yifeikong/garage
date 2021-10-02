@@ -452,6 +452,7 @@ dependencies = [
  "http",
  "hyper",
  "lazy_static",
+ "log",
  "opentelemetry",
  "opentelemetry-prometheus",
  "prometheus",

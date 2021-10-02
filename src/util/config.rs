@@ -66,6 +66,9 @@ pub struct Config {
 
 	/// Configuration for serving files as normal web server
 	pub s3_web: WebConfig,
+
+	/// Configuration for serving files as normal web server
+	pub admin_api: AdminConfig,
 }
 
 /// Configuration for S3 api
@@ -87,6 +90,13 @@ pub struct WebConfig {
 	pub bind_addr: SocketAddr,
 	/// Suffix to remove from domain name to find bucket
 	pub root_domain: String,
+}
+
+/// Configuration for the admin and monitoring HTTP API
+#[derive(Deserialize, Debug, Clone)]
+pub struct AdminConfig {
+	/// Address and port to bind for web serving
+	pub bind_addr: SocketAddr,
 }
 
 fn default_sled_cache_capacity() -> u64 {
