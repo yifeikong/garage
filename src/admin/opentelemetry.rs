@@ -1,6 +1,3 @@
-#[macro_use]
-extern crate lazy_static;
-
 use hyper::{
     header::CONTENT_TYPE,
     service::{make_service_fn, service_fn},
@@ -16,7 +13,7 @@ use prometheus::{Encoder, TextEncoder};
 use std::convert::Infallible;
 use std::sync::Arc;
 use std::time::SystemTime;
-use log::*;
+use lazy_static::lazy_static;
 
 use futures::future::*;
 use garage_model::garage::Garage;
@@ -50,13 +47,9 @@ async fn serve_req(
                 .body(Body::from(buffer))
                 .unwrap()
         }
-        (&Method::GET, "/") => Response::builder()
-            .status(200)
-            .body(Body::from("Hello World"))
-            .unwrap(),
         _ => Response::builder()
             .status(404)
-            .body(Body::from("Missing Page"))
+            .body(Body::from("Not implemented"))
             .unwrap(),
     };
 
@@ -66,6 +59,8 @@ async fn serve_req(
     Ok(response)
 }
 
+// AppState holds the metrics counter definition for Garage
+// FIXME: we would rather have that split up among the different libraries?
 struct AppState<'a> {
     exporter: PrometheusExporter,
     http_counter: BoundCounter<'a, u64>,

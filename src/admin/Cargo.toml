@@ -8,7 +8,7 @@ description = "Administration and metrics REST HTTP server for Garage"
 repository = "https://git.deuxfleurs.fr/Deuxfleurs/garage"
 
 [lib]
-path = "opentelemetry.rs"
+path = "lib.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
