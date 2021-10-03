@@ -3,4 +3,5 @@
 extern crate log;
 extern crate lazy_static;
 
-mod opentelemetry;
+mod metrics;
+pub use metrics::run_admin_server;
