@@ -12,6 +12,7 @@
   - [Configuring a reverse proxy](./cookbook/reverse_proxy.md)
   - [Production Deployment](./cookbook/real_world.md)
   - [Recovering from failures](./cookbook/recovering.md)
+  - [Security](./cookbook/security.md)
 
 - [Integrations](./connect/index.md)
   - [Apps (Nextcloud, Peertube...)](./connect/apps.md)
