@@ -45,7 +45,6 @@ pub async fn run_server(config_file: PathBuf) -> Result<(), Error> {
 	let run_system = tokio::spawn(garage.system.clone().run(watch_cancel.clone()));
 
 	info!("Create admin RPC handler...");
-<<<<<<< HEAD
 	AdminRpcHandler::new(garage.clone());
 
 	info!("Initializing API server...");
@@ -91,43 +90,6 @@ pub async fn run_server(config_file: PathBuf) -> Result<(), Error> {
 
 	// Await for all background tasks to end
 	await_background_done.await?;
-=======
-	AdminRpcHandler::new(garage.clone()).register_handler(&mut rpc_server);
-
-	info!("Initializing RPC and API servers...");
-	let run_rpc_server = Arc::new(rpc_server).run(wait_from(watch_cancel.clone()));
-	let api_server = run_api_server(garage.clone(), wait_from(watch_cancel.clone()));
-	let web_server = run_web_server(garage.clone(), wait_from(watch_cancel.clone()));
-	let admin_server = run_admin_server(garage.clone(), wait_from(watch_cancel.clone()));
-
-	futures::try_join!(
-		bootstrap.map(|()| {
-			info!("Bootstrap done");
-			Ok(())
-		}),
-		run_rpc_server.map(|rv| {
-			info!("RPC server exited");
-			rv
-		}),
-		api_server.map(|rv| {
-			info!("API server exited");
-			rv
-		}),
-		web_server.map(|rv| {
-			info!("Web server exited");
-			rv
-		}),
-		admin_server.map(|rv| {
-			info!("Admin HTTP server exited");
-			rv
-		}),
-		await_background_done.map(|rv| {
-			info!("Background runner exited: {:?}", rv);
-			Ok(())
-		}),
-		shutdown_signal(send_cancel),
-	)?;
->>>>>>> Add configuration block
 
 	info!("Cleaning up...");
 
