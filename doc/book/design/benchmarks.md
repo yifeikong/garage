@@ -1,4 +1,7 @@
-# Benchmarks
++++
+title = "Benchmarks"
+weight = 10
++++
 
 With Garage, we wanted to build a software defined storage service that follow the [KISS principle](https://en.wikipedia.org/wiki/KISS_principle),
  that is suitable for geo-distributed deployments and more generally that would work well for community hosting (like a Mastodon instance).
