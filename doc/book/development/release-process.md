@@ -34,7 +34,7 @@ We generate the following binary artifacts for now:
 
 Additionnaly we also build two web pages:
   - the documentation (this website)
-  - [the release page](https://garagehq.deuxfleurs.fr/releases.html)
+  - [the release page](https://garagehq.deuxfleurs.fr/_releases.html)
 
 We publish the static binaries on our own garage cluster (you can access them through the releases page)
 and the docker containers on Docker Hub.

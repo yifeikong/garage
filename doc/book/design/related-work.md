@@ -24,7 +24,7 @@ Openstack Cinder proxy previous solution to provide an uniform API.
 File storage provides a higher abstraction, they are one filesystem among others, which means they don't necessarily have all the exotic features of every filesystem.
 Often, they relax some POSIX constraints while many applications will still be compatible without any modification.
 As an example, we are able to run MariaDB (very slowly) over GlusterFS...
-We can also mention CephFS (read [RADOS](https://ceph.com/wp-content/uploads/2016/08/weil-rados-pdsw07.pdf) whitepaper), Lustre, LizardFS, MooseFS, etc.
+We can also mention CephFS (read [RADOS](https://doi.org/10.1145/1374596.1374606) whitepaper [[pdf](https://ceph.com/assets/pdfs/weil-rados-pdsw07.pdf)]), Lustre, LizardFS, MooseFS, etc.
 OpenStack Manila proxy previous solutions to provide an uniform API.
 
 Finally object storages provide the highest level abstraction.

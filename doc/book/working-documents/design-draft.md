@@ -162,4 +162,4 @@ Number K of tokens per node: decided by the operator & stored in the operator's 
 - CDC: <https://www.usenix.org/system/files/conference/atc16/atc16-paper-xia.pdf>
 - Erasure coding: <http://web.eecs.utk.edu/~jplank/plank/papers/CS-08-627.html>
 - [Openstack Storage Concepts](https://docs.openstack.org/arch-design/design-storage/design-storage-concepts.html)
-- [RADOS](https://ceph.com/wp-content/uploads/2016/08/weil-rados-pdsw07.pdf)
+- [RADOS](https://doi.org/10.1145/1374596.1374606) [[pdf](https://ceph.com/assets/pdfs/weil-rados-pdsw07.pdf)]

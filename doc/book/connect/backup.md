@@ -25,7 +25,7 @@ If you still want to use Borg, you can use it with `rclone mount`.
 
 ## Duplicati
 
-*External links:* [Duplicati Documentation > Storage Providers](https://github.com/kees-z/DuplicatiDocs/blob/master/docs/05-storage-providers.md#s3-compatible)
+*External links:* [Duplicati Documentation > Storage Providers](https://github.com/kees-z/DuplicatiDocs/blob/master/docs/05-storage-providers.md#user-content-s3-compatible)
 
 ## knoxite
 

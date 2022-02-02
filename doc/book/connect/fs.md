@@ -56,11 +56,11 @@ fusermount -u /tmp/my-bucket
 
 ## s3fs
 
-*External link:* [s3fs github > README.md](https://github.com/s3fs-fuse/s3fs-fuse#examples)
+*External link:* [s3fs github > README.md](https://github.com/s3fs-fuse/s3fs-fuse#user-content-examples)
 
 ## goofys
 
-*External link:* [goofys github > README.md](https://github.com/kahing/goofys#usage)
+*External link:* [goofys github > README.md](https://github.com/kahing/goofys#user-content-usage)
 
 ## s3backer
 
