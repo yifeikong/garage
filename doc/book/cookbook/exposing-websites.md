@@ -14,11 +14,11 @@ Now it will be **publicly** exposed on the web endpoint (by default listening on
 Our website serving logic is as follow:
   - Supports only static websites (no support for PHP or other languages)
   - Does not support directory listing
-  - The index is defined in your `garage.toml`. ([ref](/reference_manual/configuration.html#index))
+  - The index is defined in your `garage.toml`. ([ref](@/documentation/reference-manual/configuration.md#index))
 
 Now we need to infer the URL of your website through your bucket name.
 Let assume:
-  - we set `root_domain = ".web.example.com"` in `garage.toml` ([ref](/reference_manual/configuration.html#root_domain))
+  - we set `root_domain = ".web.example.com"` in `garage.toml` ([ref](@/documentation/reference-manual/configuration.md#root_domain))
   - our bucket name is `garagehq.deuxfleurs.fr`.
 
 Our bucket will be served if the Host field matches one of these 2 values (the port is ignored):
@@ -46,6 +46,6 @@ Now that you understand how website logic works on Garage, you can:
  - make the website endpoint listens on port 80 (instead of 3902)
  - use iptables to redirect the port 80 to the port 3902:  
    `iptables -t nat -A PREROUTING -p tcp -dport 80 -j REDIRECT -to-port 3902`
- - or configure a [reverse proxy](reverse_proxy.html) in front of Garage to add TLS (HTTPS), CORS support, etc.
+ - or configure a [reverse proxy](@/documentation/cookbook/reverse-proxy.md) in front of Garage to add TLS (HTTPS), CORS support, etc.
 
-You can also take a look at [Website Integration](/connect/websites.html) to see how you can add Garage to your workflow.
+You can also take a look at [Website Integration](@/documentation/connect/websites.md) to see how you can add Garage to your workflow.

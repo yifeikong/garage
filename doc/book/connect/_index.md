@@ -10,11 +10,11 @@ Garage implements the Amazon S3 protocol, which makes it compatible with many ex
 
 In particular, you will find here instructions to connect it with:
 
-  - [web applications](./apps.md)
-  - [website hosting](./websites.md)
-  - [software repositories](./repositories.md)
-  - [CLI tools](./cli.md)
-  - [your own code](./code.md)
+  - [web applications](@/documentation/connect/apps/index.md)
+  - [website hosting](@/documentation/connect/websites.md)
+  - [software repositories](@/documentation/connect/repositories.md)
+  - [CLI tools](@/documentation/connect/cli.md)
+  - [your own code](@/documentation/connect/code.md)
 
 ### Generic instructions
 
@@ -31,7 +31,7 @@ you will need the following parameters:
   like this: `GK3515373e4c851ebaad366558` (access key),
   `7d37d093435a41f2aab8f13c19ba067d9776c90215f56614adad6ece597dbb34` (secret key).
   These keys are created and managed using the `garage` CLI, as explained in the
-  [quick start](../quick_start/index.md) guide.
+  [quick start](@/documentation/quick-start/_index.md) guide.
 
 Most S3 clients can be configured easily with these parameters,
 provided that you follow the following guidelines:

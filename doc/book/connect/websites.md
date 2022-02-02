@@ -53,7 +53,7 @@ Currently, the proposed workaround is to deploy your website manually:
   - Click on Get website files
   - You need to synchronize the output folder you see in your file explorer, we will use minio client.
 
-Be sure that you [configured minio client](cli.html#minio-client-recommended).
+Be sure that you [configured minio client](@/documentation/connect/cli.md#minio-client-recommended).
 
 Then copy this output folder
 
@@ -66,7 +66,7 @@ mc mirror --overwrite output garage/my-site
 Some tools do not support sending to a S3 backend but output a compiled folder on your system.
 We can then use any CLI tool to upload this content to our S3 target.
 
-First, start by [configuring minio client](cli.html#minio-client-recommended).
+First, start by [configuring minio client](@/documentation/connect/cli.md#minio-client-recommended).
 
 Then build your website:
 

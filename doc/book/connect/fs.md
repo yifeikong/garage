@@ -14,7 +14,7 @@ Ideally, avoid these solutions at all for any serious or production use.
 
 ## rclone mount
 
-rclone uses the same configuration when used [in CLI](/connect/cli.html) and mount mode.
+rclone uses the same configuration when used [in CLI](@/documentation/connect/cli.md) and mount mode.
 We suppose you have the following entry in your `rclone.ini` (mine is located in `~/.config/rclone/rclone.conf`):
 
 ```toml

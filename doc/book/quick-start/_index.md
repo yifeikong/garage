@@ -11,7 +11,7 @@ and how to interact with it.
 
 Our goal is to introduce you to Garage's workflows.
 Following this guide is recommended before moving on to
-[configuring a multi-node cluster](../cookbook/real_world.md).
+[configuring a multi-node cluster](@/documentation/cookbook/real-world.md).
 
 Note that this kind of deployment should not be used in production,
 as it provides no redundancy for your data!
@@ -28,10 +28,12 @@ or in `~/.local/bin`).
 
 If a binary of the last version is not available for your architecture,
 or if you want a build customized for your system,
-you can [build Garage from source](../cookbook/from_source.md).
+you can [build Garage from source](@/documentation/cookbook/from-source.md).
 
 
-## Writing a first configuration file
+## Configuring and starting Garage
+
+### Writing a first configuration file
 
 This first configuration file should allow you to get started easily with the simplest
 possible Garage deployment.
@@ -73,12 +75,12 @@ Garage server will not be persistent. Change these to locations on your local di
 your data to be persisted properly.
 
 
-## Launching the Garage server
+### Launching the Garage server
 
 Use the following command to launch the Garage server with our configuration file:
 
 ```
-RUST_LOG=garage=info garage server
+garage server
 ```
 
 You can tune Garage's verbosity as follows (from less verbose to more verbose):
@@ -89,11 +91,11 @@ RUST_LOG=garage=debug garage server
 RUST_LOG=garage=trace garage server
 ```
 
-Log level `info` is recommended for most use cases.
+Log level `info` is the default value and is recommended for most use cases.
 Log level `debug` can help you check why your S3 API calls are not working.
 
 
-## Checking that Garage runs correctly
+### Checking that Garage runs correctly
 
 The `garage` utility is also used as a CLI tool to configure your Garage deployment.
 It uses values from the TOML configuration file to find the Garage daemon running on the
@@ -152,7 +154,7 @@ garage help
 garage bucket allow --help
 ```
 
-#### Create a bucket
+### Create a bucket
 
 Let's take an example where we want to deploy NextCloud using Garage as the
 main data storage.
@@ -170,7 +172,7 @@ garage bucket list
 garage bucket info nextcloud-bucket
 ```
 
-#### Create an API key
+### Create an API key
 
 The `nextcloud-bucket` bucket now exists on the Garage server,
 however it cannot be accessed until we add an API key with the proper access rights.
@@ -200,7 +202,7 @@ garage key list
 garage key info nextcloud-app-key
 ```
 
-#### Allow a key to access a bucket
+### Allow a key to access a bucket
 
 Now that we have a bucket and a key, we need to give permissions to the key on the bucket:
 
@@ -229,7 +231,7 @@ Before reading the following, you need a working `mc` command on your path.
 Note that on certain Linux distributions such as Arch Linux, the Minio client binary
 is called `mcli` instead of `mc` (to avoid name clashes with the Midnight Commander).
 
-#### Configure `mc`
+### Configure `mc`
 
 You need your access key and secret key created above.
 We will assume you are invoking `mc` on the same machine as the Garage server,
@@ -257,7 +259,7 @@ or `$HOME/.bashrc` file:
 export MC_REGION=garage
 ```
 
-#### Use `mc`
+### Use `mc`
 
 You can not list buckets from `mc` currently.
 
@@ -271,7 +273,7 @@ mc mirror localdir/ my-garage/another-bucket
 ```
 
 
-#### Other tools for interacting with Garage
+### Other tools for interacting with Garage
 
 The following tools can also be used to send and recieve files from/to Garage:
 
@@ -280,5 +282,5 @@ The following tools can also be used to send and recieve files from/to Garage:
 - [Cyberduck](https://cyberduck.io/)
 - [`s3cmd`](https://s3tools.org/s3cmd)
 
-Refer to the ["Integrations" section](../connect/index.md) to learn how to
+Refer to the ["Integrations" section](@/documentation/connect/_index.md) to learn how to
 configure application and command line utilities to integrate with Garage.

@@ -121,7 +121,7 @@ server {
 ### Exposing the web endpoint
 
 The web endpoint is a bit more complicated to configure as it listens on many different `Host` fields.
-To better understand the logic involved, you can refer to the [Exposing buckets as websites](/cookbook/exposing_websites.html) section.
+To better understand the logic involved, you can refer to the [Exposing buckets as websites](@/documentation/cookbook/exposing-websites.md) section.
 Also, for some applications, you may need to serve CORS headers: Garage can not serve them directly but we show how we can use nginx to serve them.
 You can use the following example as your starting point:
 

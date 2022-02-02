@@ -69,7 +69,7 @@ To test your new configuration, just reload your Nextcloud webpage and start sen
 
 **From the GUI.** Activate the "External storage support" app from the "Applications" page (click on your account icon on the top right corner of your screen to display the menu). Go to your parameters page (also located below your account icon). Click on external storage (or the corresponding translation in your language).
 
-[![Screenshot of the External Storage form](./cli-nextcloud-gui.png)](./cli-nextcloud-gui.png)
+[![Screenshot of the External Storage form](cli-nextcloud-gui.png)](cli-nextcloud-gui.png)
 *Click on the picture to zoom*
 
 Add a new external storage. Put what you want in "folder name" (eg. "shared"). Select "Amazon S3". Keep "Access Key" for the Authentication field.
@@ -256,7 +256,7 @@ Make sure you (will) have a corresponding DNS entry for them.
 
 Now we will configure a reverse proxy in front of Garage.
 This is required as we have no other way to serve CORS headers yet.
-Check the [Configuring a reverse proxy](/cookbook/reverse_proxy.html) section to know how.
+Check the [Configuring a reverse proxy](@/documentation/cookbook/reverse-proxy.md) section to know how.
 
 Now make sure that your 2 dns entries are pointing to your reverse proxy.
 

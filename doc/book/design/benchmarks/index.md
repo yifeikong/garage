@@ -28,7 +28,7 @@ We selected 5 standard endpoints that are often in the critical path: ListBucket
 
 In this first benchmark, we consider 5 instances that are located in a different place each. To simulate the distance, we configure mknet with a RTT between each node of 100 ms +/- 20 ms of jitter. We get the following graph, where the colored bars represent the mean latency while the error bars the minimum and maximum one:
 
-![Comparison of endpoints latency for minio and garage](./img/endpoint-latency.png)
+![Comparison of endpoints latency for minio and garage](./endpoint-latency.png)
 
 Compared to garage, minio latency drastically increases on 3 endpoints: GetObject, PutObject, RemoveObject.
 
@@ -46,7 +46,7 @@ We consider that intra-DC communications are now very cheap with a latency of 0.
 The inter-DC remains costly with the same value as before (100ms +/- 20ms of jitter).
 We plot a similar graph as before:
 
-![Comparison of endpoints latency for minio and garage with 6  nodes in 3 DC](./img/endpoint-latency-dc.png)
+![Comparison of endpoints latency for minio and garage with 6  nodes in 3 DC](./endpoint-latency-dc.png)
 
 This new graph is very similar to the one before, neither minio or garage seems to benefit from this new topology, but they also do not suffer from it.
 

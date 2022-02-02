@@ -17,7 +17,7 @@ In the meantime, you can find some information at the following links:
 
 - [this presentation (in French)](https://git.deuxfleurs.fr/Deuxfleurs/garage/src/branch/main/doc/talks/2020-12-02_wide-team/talk.pdf)
 
-- [an old design draft](/working_documents/design_draft.md)
+- [an old design draft](@/documentation/working-documents/design-draft.md)
 
 
 ## Garbage collection

@@ -7,7 +7,7 @@ The cluster layout in Garage is a table that assigns to each node a role in
 the cluster. The role of a node in Garage can either be a storage node with
 a certain capacity, or a gateway node that does not store data and is only
 used as an API entry point for faster cluster access.
-An introduction to building cluster layouts can be found in the [production deployment](/cookbook/real_world.md) page.
+An introduction to building cluster layouts can be found in the [production deployment](@/documentation/cookbook/real-world.md) page.
 
 ## How cluster layouts work in Garage
 

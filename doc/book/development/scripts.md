@@ -34,7 +34,7 @@ You can inspect the detailed configuration, including ports, by inspecting `/tmp
 This script also spawns a simple HTTPS reverse proxy through `socat` for the S3 endpoint that listens on port `4443`.
 Some libraries might require a TLS endpoint to work, refer to our issue [#64](https://git.deuxfleurs.fr/Deuxfleurs/garage/issues/64) for more detailed information on this subject.
 
-This script covers the [Launching the garage server](/quick_start/index.html#launching-the-garage-server) section of our Quick start page.
+This script covers the [Launching the garage server](@/documentation/quick-start/_index.md#launching-the-garage-server) section of our Quick start page.
 
 ### 2. Make them join the cluster
 
@@ -44,7 +44,7 @@ This script covers the [Launching the garage server](/quick_start/index.html#lau
 
 This script will configure each instance by assigning them a zone (`dc1`) and a weight (`1`).
 
-This script covers the [Configuring your Garage node](/quick_start/index.html#configuring-your-garage-node) section of our Quick start page.
+This script covers the [Creating a cluster layout](@/documentation/quick-start/_index.md#creating-a-cluster-layout) section of our Quick start page.
 
 ### 3. Create a key and a bucket
 
@@ -55,7 +55,7 @@ This script covers the [Configuring your Garage node](/quick_start/index.html#co
 This script will create a bucket named `eprouvette` with a key having read and write rights on this bucket.
 The key is stored in a filed named `/tmp/garage.s3` and can be used by the following tools to pre-configure them.
 
-This script covers the [Creating buckets and keys](/quick_start/index.html#creating-buckets-and-keys) section of our Quick start page.
+This script covers the [Creating buckets and keys](@/documentation/quick-start/_index.md#creating-buckets-and-keys) section of our Quick start page.
 
 ## Handlers for generic tools
 

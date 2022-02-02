@@ -7,7 +7,7 @@ To run Garage in cluster mode, we recommend having at least 3 nodes.
 This will allow you to setup Garage for three-way replication of your data,
 the safest and most available mode proposed by Garage.
 
-We recommend first following the [quick start guide](../quick_start/index.md) in order
+We recommend first following the [quick start guide](@/documentation/quick-start/_index.md) in order
 to get familiar with Garage's command line and usage patterns.
 
 
@@ -26,7 +26,7 @@ To run a real-world deployment, make sure the following conditions are met:
   to drastically reduce Garage's response times.
 
 - This guide will assume you are using Docker containers to deploy Garage on each node. 
-  Garage can also be run independently, for instance as a [Systemd service](systemd.md).
+  Garage can also be run independently, for instance as a [Systemd service](@/documentation/cookbook/systemd.md).
   You can also use an orchestrator such as Nomad or Kubernetes to automatically manage
   Docker containers on a fleet of nodes.
 
@@ -281,15 +281,15 @@ garage layout apply
 ```
 
 **WARNING:** if you want to use the layout modification commands in a script,
-make sure to read [this page](/reference_manual/layout.html) first.
+make sure to read [this page](@/documentation/reference-manual/layout.md) first.
 
 
 ## Using your Garage cluster
 
 Creating buckets and managing keys is done using the `garage` CLI,
-and is covered in the [quick start guide](../quick_start/index.md).
+and is covered in the [quick start guide](@/documentation/quick-start/_index.md).
 Remember also that the CLI is self-documented thanks to the `--help` flag and
 the `help` subcommand (e.g. `garage help`, `garage key --help`).
 
 Configuring S3-compatible applicatiosn to interact with Garage
-is covered in the [Integrations](/connect/index.html) section.
+is covered in the [Integrations](@/documentation/connect/_index.md) section.

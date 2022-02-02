@@ -60,7 +60,7 @@ Store this folder on a fast SSD drive if possible to maximize Garage's performan
 The directory in which Garage will store the data blocks of objects.
 This folder can be placed on an HDD. The space available for `data_dir`
 should be counted to determine a node's capacity
-when [configuring it](../getting_started/05_cluster.md).
+when [configuring it](@/documentation/cookbook/real-world.md).
 
 #### `block_size`
 
@@ -206,7 +206,7 @@ Garage will accept S3 API calls that are targetted to the S3 region defined here
 API calls targetted to other regions will fail with a AuthorizationHeaderMalformed error
 message that redirects the client to the correct region.
 
-#### `root_domain`
+#### `root_domain` {#root_domain}
 
 The optionnal suffix to access bucket using vhost-style in addition to path-style request.
 Note path-style requests are always enabled, whether or not vhost-style is configured.
