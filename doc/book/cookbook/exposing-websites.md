@@ -3,7 +3,19 @@ title = "Exposing buckets as websites"
 weight = 25
 +++
 
-You can expose your bucket as a website with this simple command:
+## Configuring a bucket for website access
+
+There are two methods to expose buckets as website:
+
+1. using the PutBucketWebsite S3 API call, which is allowed for access keys that have the owner permission bit set
+
+2. from the Garage CLI, by an adminstrator of the cluster
+
+The `PutBucketWebsite` API endpoint [is documented](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html) in the official AWS docs.
+This endpoint can also be called [using `aws s3api`](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-website.html) on the command line.
+The website configuration supported by Garage is only a subset of the possibilities on Amazon S3: redirections are not supported, only the index document and error document can be specified.
+
+If you want to expose your bucket as a website from the CLI, use this simple command:
 
 ```bash
 garage bucket website --allow my-website
@@ -11,10 +23,16 @@ garage bucket website --allow my-website
 
 Now it will be **publicly** exposed on the web endpoint (by default listening on port 3902).
 
+## How exposed websites work
+
 Our website serving logic is as follow:
+
   - Supports only static websites (no support for PHP or other languages)
   - Does not support directory listing
-  - The index is defined in your `garage.toml`. ([ref](@/documentation/reference-manual/configuration.md#index))
+  - The index file is defined per-bucket and can be specified in the `PutBucketWebsite` call
+     or on the CLI using the `--index-document` parameter (default: `index.html`)
+  - A custom error document for 404 errors can be specified in the `PutBucketWebsite` call
+    or on the CLI using the `--error-document` parameter
 
 Now we need to infer the URL of your website through your bucket name.
 Let assume:

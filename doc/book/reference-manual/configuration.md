@@ -47,7 +47,7 @@ The following gives details about each available configuration option.
 
 ## Available configuration options
 
-#### `metadata_dir`
+### `metadata_dir`
 
 The directory in which Garage will store its metadata. This contains the node identifier,
 the network configuration and the peer list, the list of buckets and keys as well
@@ -55,14 +55,14 @@ as the index of all objects, object version and object blocks.
 
 Store this folder on a fast SSD drive if possible to maximize Garage's performance.
 
-#### `data_dir`
+### `data_dir`
 
 The directory in which Garage will store the data blocks of objects.
 This folder can be placed on an HDD. The space available for `data_dir`
 should be counted to determine a node's capacity
 when [configuring it](@/documentation/cookbook/real-world.md).
 
-#### `block_size`
+### `block_size`
 
 Garage splits stored objects in consecutive chunks of size `block_size`
 (except the last one which might be smaller). The default size is 1MB and
@@ -74,7 +74,7 @@ means that chunks from existing files will not be deduplicated with chunks
 from newly uploaded files, meaning you might use more storage space that is
 optimally possible.
 
-#### `replication_mode`
+### `replication_mode`
 
 Garage supports the following replication modes:
 
@@ -127,7 +127,7 @@ Compression is done synchronously, setting a value too high will add latency to 
 This value can be different between nodes, compression is done by the node which receive the
 API call.
 
-#### `rpc_secret`
+### `rpc_secret`
 
 Garage uses a secret key that is shared between all nodes of the cluster
 in order to identify these nodes and allow them to communicate together.
@@ -135,7 +135,7 @@ This key should be specified here in the form of a 32-byte hex-encoded
 random string. Such a string can be generated with a command
 such as `openssl rand -hex 32`.
 
-#### `rpc_bind_addr`
+### `rpc_bind_addr`
 
 The address and port on which to bind for inter-cluster communcations
 (reffered to as RPC for remote procedure calls).
@@ -144,14 +144,14 @@ the node, even in the case of a NAT: the NAT should be configured to forward the
 port number to the same internal port nubmer. This means that if you have several nodes running
 behind a NAT, they should each use a different RPC port number.
 
-#### `rpc_public_addr`
+### `rpc_public_addr`
 
 The address and port that other nodes need to use to contact this node for
 RPC calls.  **This parameter is optional but recommended.** In case you have
 a NAT that binds the RPC port to a port that is different on your public IP,
 this field might help making it work.
 
-#### `bootstrap_peers`
+### `bootstrap_peers`
 
 A list of peer identifiers on which to contact other Garage peers of this cluster.
 These peer identifiers have the following syntax:
@@ -167,7 +167,7 @@ be obtained by running `garage node id` and then included directly in the
 key will be returned by `garage node id` and you will have to add the IP
 yourself.
 
-#### `consul_host` and `consul_service_name`
+### `consul_host` and `consul_service_name`
 
 Garage supports discovering other nodes of the cluster using Consul.
 This works only when nodes are announced in Consul by an orchestrator such as Nomad,
@@ -177,7 +177,7 @@ The `consul_host` parameter should be set to the hostname of the Consul server,
 and `consul_service_name` should be set to the service name under which Garage's
 RPC ports are announced.
 
-#### `sled_cache_capacity`
+### `sled_cache_capacity`
 
 This parameter can be used to tune the capacity of the cache used by
 [sled](https://sled.rs), the database Garage uses internally to store metadata.
@@ -185,7 +185,7 @@ Tune this to fit the RAM you wish to make available to your Garage instance.
 More cache means faster Garage, but the default value (128MB) should be plenty
 for most use cases.
 
-#### `sled_flush_every_ms`
+### `sled_flush_every_ms`
 
 This parameters can be used to tune the flushing interval of sled.
 Increase this if sled is thrashing your SSD, at the risk of losing more data in case
@@ -193,20 +193,21 @@ of a power outage (though this should not matter much as data is replicated on o
 nodes). The default value, 2000ms, should be appropriate for most use cases.
 
 
+
 ## The `[s3_api]` section
 
-#### `api_bind_addr`
+### `api_bind_addr`
 
 The IP and port on which to bind for accepting S3 API calls.
 This endpoint does not suport TLS: a reverse proxy should be used to provide it.
 
-#### `s3_region`
+### `s3_region`
 
 Garage will accept S3 API calls that are targetted to the S3 region defined here.
 API calls targetted to other regions will fail with a AuthorizationHeaderMalformed error
 message that redirects the client to the correct region.
 
-#### `root_domain` {#root_domain}
+### `root_domain` {#root_domain}
 
 The optionnal suffix to access bucket using vhost-style in addition to path-style request.
 Note path-style requests are always enabled, whether or not vhost-style is configured.
@@ -216,18 +217,20 @@ but might be required by softwares not supporting path-style requests.
 If `root_domain` is `s3.garage.eu`, a bucket called `my-bucket` can be interacted with
 using the hostname `my-bucket.s3.garage.eu`.
 
+
+
 ## The `[s3_web]` section
 
 Garage allows to publish content of buckets as websites. This section configures the
 behaviour of this module.
 
-#### `bind_addr`
+### `bind_addr`
 
 The IP and port on which to bind for accepting HTTP requests to buckets configured
 for website access.
 This endpoint does not suport TLS: a reverse proxy should be used to provide it.
 
-#### `root_domain`
+### `root_domain`
 
 The optionnal suffix appended to bucket names for the corresponding HTTP Host.
 
@@ -235,6 +238,3 @@ For instance, if `root_domain` is `web.garage.eu`, a bucket called `deuxfleurs.f
 will be accessible either with hostname `deuxfleurs.fr.web.garage.eu`
 or with hostname `deuxfleurs.fr`.
 
-#### `index`
-
-The name of the index file to return for requests ending with `/` (usually `index.html`).

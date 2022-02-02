@@ -94,7 +94,7 @@ might be faster but most of the pieces will be deleted anyway from the disk and 
 
 First, set up a new drive to store the metadata directory for the replacement node (a SSD is recommended),
 and for the data directory if necessary. You can then start Garage on the new node.
-The restarted node should generate a new node ID, and it should be shown as `NOT CONFIGURED` in `garage status`.
+The restarted node should generate a new node ID, and it should be shown with `NO ROLE ASSIGNED` in `garage status`.
 The ID of the lost node should be shown in `garage status` in the section for disconnected/unavailable nodes.
 
 Then, replace the broken node by the new one, using:

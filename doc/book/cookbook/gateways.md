@@ -15,9 +15,6 @@ You can configure Garage as a gateway on all nodes that will consume your S3 API
 
   - **It simplifies security.** Instead of having to maintain and renew a TLS certificate, you leverage the Secret Handshake protocol we use for our cluster. The S3 API protocol will be in plain text but limited to your local machine.
 
-## Limitations
-
-Currently it will not work with minio client. Follow issue [#64](https://git.deuxfleurs.fr/Deuxfleurs/garage/issues/64) for more information.
 
 ## Spawn a Gateway
 
