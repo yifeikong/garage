@@ -92,8 +92,8 @@ garage bucket website nix.example.com --allow
 ```
 
 If you need more information about exposing buckets as websites on Garage,
-check [Exposing buckets as websites](/cookbook/exposing_websites.html)
- and [Configuring a reverse proxy](/cookbook/reverse_proxy.html).
+check [Exposing buckets as websites](@/documentation/cookbook/exposing-websites.md)
+ and [Configuring a reverse proxy](@/documentation/cookbook/reverse-proxy.md).
 
 Next, we want to check that our bucket works:
 

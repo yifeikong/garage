@@ -10,11 +10,11 @@ perspective.  It will allow you to understand if Garage is a good fit for
 you, how to better use it, how to contribute to it, what can Garage could
 and could not do, etc.
 
-- **[Goals and use cases](goals.md):** This page explains why Garage was concieved and what practical use cases it targets.
+- **[Goals and use cases](@/documentation/design/goals.md):** This page explains why Garage was concieved and what practical use cases it targets.
 
-- **[Related work](related_work.md):** This pages presents the theoretical background on which Garage is built, and describes other software storage solutions and why they didn't work for us.
+- **[Related work](@/documentation/design/related-work.md):** This pages presents the theoretical background on which Garage is built, and describes other software storage solutions and why they didn't work for us.
 
-- **[Internals](internals.md):** This page enters into more details on how Garage manages data internally.
+- **[Internals](@/documentation/design/internals.md):** This page enters into more details on how Garage manages data internally.
 
 ## Talks
 
