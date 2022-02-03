@@ -48,8 +48,10 @@ steps:
     commands:
       - nix-build --no-build-output --option log-lines 100 --argstr target x86_64-unknown-linux-musl --arg release false --argstr git_version $DRONE_COMMIT
 
-  - name: unit tests
+  - name: unit + func tests
     image: nixpkgs/nix:nixos-21.05
+    environment:
+      GARAGE_TEST_INTEGRATION_EXE: result/bin/garage
     volumes:
     - name: nix_store
       path: /nix
@@ -62,13 +64,14 @@ steps:
           --option log-lines 100 \
           --argstr target x86_64-unknown-linux-musl \
           --argstr compileMode test
-      - ./result*/bin/garage_api*
-      - ./result*/bin/garage_model*
-      - ./result*/bin/garage_rpc*
-      - ./result*/bin/garage_table*
-      - ./result*/bin/garage_util*
-      - ./result*/bin/garage_web*
-      - ./result*/bin/garage*
+      - ./result/bin/garage_api-*
+      - ./result/bin/garage_model-*
+      - ./result/bin/garage_rpc-*
+      - ./result/bin/garage_table-*
+      - ./result/bin/garage_util-*
+      - ./result/bin/garage_web-*
+      - ./result/bin/garage-*
+      - ./result/bin/integration-*
 
   - name: smoke-test
     image: nixpkgs/nix:nixos-21.05
@@ -512,6 +515,6 @@ node:
 
 ---
 kind: signature
-hmac: 1c33490cc2902564c4250a409c156683d0d549b8c9d5aee4e46d1bde4e0ccf2c
+hmac: 0ba1f5febd521c77c4c0ecb6724888a8d3307024fc74feea1d5bf6bb3bce8429
 
 ...
