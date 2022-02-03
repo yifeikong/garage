@@ -3,31 +3,27 @@ title = "S3 Compatibility status"
 weight = 20
 +++
 
-## Global S3 features
-
-Implemented:
-
-- path-style URLs (`garage.tld/bucket/key`)
-- vhost-style URLs (`bucket.garage.tld/key`)
-- putting and getting objects in buckets
-- multipart uploads
-- listing objects
-- access control on a per-access-key-per-bucket basis
-- CORS headers on web endpoint
-
-Not implemented:
-
-- object-level ACL
-- [object versioning](https://git.deuxfleurs.fr/Deuxfleurs/garage/issues/166)
-- encryption
-- most `x-amz-` headers
-
-
 ## Endpoint implementation
 
-All APIs that are not implemented will return a 501 Not Implemented.
+All APIs that are missing on Garage will return a 501 Not Implemented.
 
-### Core
+*The compatibility list for other platforms is given only for information purposes and based on available documentation. Some entries might be inexact. Feel free to open a PR to fix this table.*
+
+### Signatures
+
+| Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
+|------------------------------|----------------------------------|-----------------|---------------|---------|
+| [s3v2](https://docs.aws.amazon.com/general/latest/gr/signature-version-2.html) (deprecated) | ❌Missing | ✅ |
+| [s3v4](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html) |  ✅ Implemented | ✅| 
+
+### URL style
+
+| Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
+|------------------------------|----------------------------------|-----------------|---------------|---------|
+| [path-style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html#path-style-access) (eg. `host.tld/bucket/key`) |  ✅ Implemented | ✅ |
+| [vhost-style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html#virtual-hosted-style-access) URL (eg. `bucket.host.tld/key`) |  ✅ Implemented | ❌|
+
+### Core endoints
 
 | Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
 |------------------------------|----------------------------------|-----------------|---------------|---------|
@@ -45,7 +41,7 @@ All APIs that are not implemented will return a 501 Not Implemented.
 | [ListObjectsV2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html)                | ✅ Implemented                      | ❌|
 | [PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)                    | ✅ Implemented                      | ✅ | 
 
-### Multipart Upload
+### Multipart Upload endpoints
 
 | Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
 |------------------------------|----------------------------------|-----------------|---------------|---------|
@@ -57,7 +53,7 @@ All APIs that are not implemented will return a 501 Not Implemented.
 | [UploadPart](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)                   | ✅ Implemented                      | ✅ | 
 | [UploadPartCopy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html)               | ✅ Implemented                      | ✅ | 
 
-### Website
+### Website endpoints
 
 | Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
 |------------------------------|----------------------------------|-----------------|---------------|---------|
@@ -69,10 +65,10 @@ All APIs that are not implemented will return a 501 Not Implemented.
 | [PutBucketCors](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html)                | ✅ Implemented                      | ❌|
 
 
-### ACL, Policies
+### ACL, Policies endpoints
 
 Amazon has 2 access control mechanisms in S3: ACL (legacy) and policies (new one).
-Garage implements none of them, and has its own system instead.
+Garage implements none of them, and has its own system instead, built around a per-access-key-per-bucket logic.
 See Garage CLI reference manual to learn how to use Garage's permission system.
 
 | Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
@@ -86,7 +82,10 @@ See Garage CLI reference manual to learn how to use Garage's permission system.
 | [GetObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html) | ❌Missing | ✅ | 
 | [PutObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html) | ❌Missing | ✅ | 
 
-### Versioning, Lifecycle
+### Versioning, Lifecycle endpoints
+
+Garage does not support (yet) object versioning.
+If you need this feature, please [share your use case in our dedicated issue](https://git.deuxfleurs.fr/Deuxfleurs/garage/issues/166).
 
 | Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
 |------------------------------|----------------------------------|-----------------|---------------|---------|
@@ -96,8 +95,10 @@ See Garage CLI reference manual to learn how to use Garage's permission system.
 | [GetBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html)          | ❌ Stub (see below)                 | ✅ |
 | [ListObjectVersions](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html) | ❌Missing | ❌|
 | [PutBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) | ❌Missing | ❌|
+ 
+### Replication endpoints
 
-### Replication
+Please open an issue if you have a use case for replication.
 
 | Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
 |------------------------------|----------------------------------|-----------------|---------------|---------|
@@ -105,12 +106,22 @@ See Garage CLI reference manual to learn how to use Garage's permission system.
 | [GetBucketReplication](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html) | ❌Missing | ❌|
 | [PutBucketReplication](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html) | ❌Missing | ❌|
 
-### Amazon specific
+### (Server-side) encryption
+
+We think that you can either encrypt your server partition or do client-side encryption, so we did not implement server-side encryption for Garage.
+Please open an issue if you have a use case.
+
+| Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
+|------------------------------|----------------------------------|-----------------|---------------|---------|
+| [DeleteBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html) | ❌Missing | ❌|
+| [GetBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketEncryption.html) | ❌Missing | ❌|
+| [PutBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html) | ❌Missing | ❌|
+
+### Amazon specific endpoints
 
 | Endpoint                     | Garage                           | [Openstack Swift](https://docs.openstack.org/swift/latest/s3_compat.html) | [Ceph Object Gateway](https://docs.ceph.com/en/latest/radosgw/s3/) | [Riak CS](https://docs.riak.com/riak/cs/2.1.1/references/apis/storage/s3/index.html) |  
 |------------------------------|----------------------------------|-----------------|---------------|---------|
 | [DeleteBucketAnalyticsConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketAnalyticsConfiguration.html) | ❌Missing | ❌|
-| [DeleteBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html) | ❌Missing | ❌|
 | [DeleteBucketIntelligentTieringConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketIntelligentTieringConfiguration.html) | ❌Missing | ❌|
 | [DeleteBucketInventoryConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketInventoryConfiguration.html) | ❌Missing | ❌|
 | [DeleteBucketMetricsConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketMetricsConfiguration.html) | ❌Missing | ❌|
@@ -120,7 +131,6 @@ See Garage CLI reference manual to learn how to use Garage's permission system.
 | [DeletePublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeletePublicAccessBlock.html) | ❌Missing | ❌|
 | [GetBucketAccelerateConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketAccelerateConfiguration.html) | ❌Missing | ❌|
 | [GetBucketAnalyticsConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketAnalyticsConfiguration.html) | ❌Missing | ❌|
-| [GetBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketEncryption.html) | ❌Missing | ❌|
 | [GetBucketIntelligentTieringConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketIntelligentTieringConfiguration.html) | ❌Missing | ❌|
 | [GetBucketInventoryConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketInventoryConfiguration.html) | ❌Missing | ❌|
 | [GetBucketLogging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLogging.html) | ❌Missing | ❌|
@@ -141,7 +151,6 @@ See Garage CLI reference manual to learn how to use Garage's permission system.
 | [ListBucketMetricsConfigurations](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketMetricsConfigurations.html) | ❌Missing | ❌|
 | [PutBucketAccelerateConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAccelerateConfiguration.html) | ❌Missing | ❌|
 | [PutBucketAnalyticsConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAnalyticsConfiguration.html) | ❌Missing | ❌|
-| [PutBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html) | ❌Missing | ❌|
 | [PutBucketIntelligentTieringConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) | ❌Missing | ❌|
 | [PutBucketInventoryConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketInventoryConfiguration.html) | ❌Missing | ❌|
 | [PutBucketLogging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) | ❌Missing | ❌|
@@ -158,6 +167,11 @@ See Garage CLI reference manual to learn how to use Garage's permission system.
 | [RestoreObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html) | ❌Missing | ❌|
 | [SelectObjectContent](https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html) | ❌Missing | ❌|
 
+## Implementation details
+
+Most `x-amz-` headers are not implemented.
+
+### Endpoint specific details
 
 - **GetBucketVersioning:** Stub implementation (Garage does not yet support versionning so this always returns
 "versionning not enabled").
