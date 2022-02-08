@@ -169,13 +169,15 @@ yourself.
 
 ### `consul_host` and `consul_service_name`
 
-Garage supports discovering other nodes of the cluster using Consul.
-This works only when nodes are announced in Consul by an orchestrator such as Nomad,
-as Garage is not able to announce itself.
+Garage supports discovering other nodes of the cluster using Consul.  For this
+to work correctly, nodes need to know their IP address by which they can be
+reached by other nodes of the cluster, which should be set in `rpc_public_addr`.
 
 The `consul_host` parameter should be set to the hostname of the Consul server,
 and `consul_service_name` should be set to the service name under which Garage's
 RPC ports are announced.
+
+Garage does not yet support talking to Consul over TLS.
 
 ### `sled_cache_capacity`
 
